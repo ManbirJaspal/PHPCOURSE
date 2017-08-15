@@ -1,3 +1,59 @@
+
+
+<?php
+$firstNameError = "";
+$lastNameError = "";
+$emailError = "";
+$genderError = "";
+
+    if(isset($_POST['submit'])) {
+        if(empty($_POST["firstName"])) {
+            $firstNameError = "First Name is Required";
+            
+        } else {
+            $firstName = Test_User_Input($_POST["firstName"]);
+           
+            if(!preg_match("/^[A-Za-z. ]*$/", $firstName)){
+                
+                
+            }
+        }
+        
+        if(empty($_POST["lastName"])) {
+            $lastNameError = "Last Name is Required";
+            
+        } else {
+            $lastName = Test_User_Input($_POST["lastName"]);
+        }
+        
+        if(empty($_POST["email"])) {
+            $emailError = "Email is Required";
+            
+        } else {
+            $email = Test_User_Input($_POST["email"]);
+        } 
+        
+        if(empty($_POST["gender"])) {
+            $genderError = "Gender is Required";
+            
+        } else {
+            $gender = Test_User_Input($_POST["gender"]);
+        }
+
+
+}
+
+function Test_User_Input($data) {
+    
+    return $data;
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,21 +73,21 @@
              
              </div>
              <div class="row">
-                <form method="post" action="#" class="contact-form">
+                <form method="post" action="Registration_Form.php" class="registration-form">
                  <div class="row">
                     <div class="col span-1-of-3">
-                        <label for="name">First Name</label>
+                        <label for="firstName">First Name</label>
                      </div>
                      <div class="col span-2-of-3">
-                         <input type="text" name="name" id="name" placeholder="Your First Name" required>
+                         <input type="text" name="firstName" id="firstName" placeholder="Your First Name" >*<?php echo $firstNameError; ?>
                      </div>
                     
                     </div> <div class="row">
                     <div class="col span-1-of-3">
-                        <label for="name">Last Name</label>
+                        <label for="lastName">Last Name</label>
                      </div>
                      <div class="col span-2-of-3">
-                         <input type="text" name="name" id="name" placeholder="Your Last Name" required>
+                         <input type="text" name="lastName" id="lastName" placeholder="Your Last Name" >*<?php echo $lastNameError; ?>
                      </div>
                     
                      <div class="row">
@@ -39,12 +95,13 @@
                         <label>Gender</label>
                         </div>
                         <div class="col span-2-of-3">
-                            <input type="radio" name="gender" id="gender" checked>Male 
+                            <input class="radio" type="radio" name="gender" id="gender">Male 
                             
-                            <input type="radio" name="gender" id="gender" checked>Female
+                            <input class="radio" type="radio" name="gender" id="gender" >Female
                             
-                            <input type="radio" name="gender" id="gender" checked>Other
+                            <input class="radio" type="radio" name="gender" id="gender">Other
                             
+                            *<?php echo $genderError; ?>
                         </div>
                         
                         
@@ -55,7 +112,7 @@
                         <label for="email">Email</label>
                      </div>
                      <div class="col span-2-of-3">
-                         <input type="email" name="email" id="email" placeholder="Your email" required>
+                         <input type="text" name="email" id="email" placeholder="Your email" >*<?php echo $emailError; ?>
                      </div>
                     
                     </div>
@@ -82,7 +139,7 @@
                         <label>Password</label>
                         </div>
                         <div class="col span-2-of-3">
-                            <input type="Password" name="Password" id="Password" placeholder="Your Password" required>
+                            <input type="Password" name="Password" id="Password" placeholder="Your Password" >
 
                         </div>
                         
@@ -94,13 +151,13 @@
                         <label>Confirm Password</label>
                         </div>
                         <div class="col span-2-of-3">
-                            <input type="Password" name="Confirm-Password" id="Confirm-Password" placeholder="Confirm Password" required>
+                            <input type="Password" name="Confirm-Password" id="Confirm-Password" placeholder="Confirm Password" >
 
                         </div>
                         
                         <div class="row">
                             <div class="col span-1-of-3">
-                            <input type="checkbox" name="terms" id="terms">I accept the termas and conditions.
+                            <input type="checkbox" name="terms" id="terms">I accept the terms and conditions.
                             
                             
                             </div>
@@ -114,7 +171,7 @@
                         <label>&nbsp;</label>
                         </div>
                         <div class="col span-2-of-3">
-                         <input type="submit" value="Send it!">
+                         <input type="submit" name="submit" value="Register">
                         </div>
                     </div>
                         
